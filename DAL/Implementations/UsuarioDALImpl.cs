@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    internal class UsuarioDALImpl : IUsuarioDAL
+    public class UsuarioDALImpl : IUsuarioDAL
     {
         private CONSULTORIOContext context;
         public UsuarioDALImpl(CONSULTORIOContext _context)

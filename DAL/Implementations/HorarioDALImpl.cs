@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    internal class HorarioDALImpl : IHorarioDAL
+    public class HorarioDALImpl : IHorarioDAL
     {
         private CONSULTORIOContext context;
         public HorarioDALImpl(CONSULTORIOContext _context)

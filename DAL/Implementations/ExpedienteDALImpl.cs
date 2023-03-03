@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    internal class ExpedienteDALImpl : IExpedienteDAL
+    public class ExpedienteDALImpl : IExpedienteDAL
     {
         private CONSULTORIOContext context;
         public ExpedienteDALImpl(CONSULTORIOContext _context)

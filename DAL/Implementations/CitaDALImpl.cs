@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Implementations
 {
-    internal class CitaDALImpl : ICitaDAL
+    public class CitaDALImpl : ICitaDAL
     {
         private CONSULTORIOContext context;
         public CitaDALImpl(CONSULTORIOContext _context)
