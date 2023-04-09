@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FrontEnd.Models.ExpedienteViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdExpediente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuarioFk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDoctorFk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Padecimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tratamiento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdExpediente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuarioFk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDoctorFk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Padecimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tratamiento)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
