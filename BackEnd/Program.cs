@@ -45,10 +45,23 @@ builder.Services.AddSwaggerGen();
 
 #region Identity
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 3;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
 
 
-    );
+
+
+})
+
+    .AddEntityFrameworkStores<CONSULTORIOContext>()
+    .AddDefaultTokenProviders();
+
+    ;
 #endregion
 
 
@@ -89,6 +102,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ApiKeyMiddleware>();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
