@@ -1,4 +1,27 @@
+
+using Entities;
+using Entities.Utilities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Transactions;
+using Entities.Utilities;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+#region ConnectionString
+
+builder.Services.AddDbContext<CONSULTORIOContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Add services to the container.
+string connString = builder.Configuration.GetConnectionString("DefaultConnection");
+Util.ConnectionString = connString;
+
+
+#endregion
+
 
 // Add services to the container.
 
