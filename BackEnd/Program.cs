@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Transactions;
-using Entities.Utilities;
-using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +21,17 @@ Util.ConnectionString = connString;
 
 #endregion
 
+
+#region Serilog
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Host.UseSerilog((ctx, lc) => lc
+    .WriteTo.File("logs/LogsBackEnd.txt", rollingInterval: RollingInterval.Day)
+    .MinimumLevel.Debug()
+    );
+
+
+#endregion
 
 // Add services to the container.
 
