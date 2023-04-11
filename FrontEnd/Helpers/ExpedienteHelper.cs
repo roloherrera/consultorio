@@ -14,6 +14,12 @@ namespace FrontEnd.Helpers
 
         }
 
+        public ExpedienteHelper(string token)
+        {
+            ServiceRepository = new ServiceRepository(token);
+
+        }
+
 
 
         public List<ExpedienteViewModel> GetAll()
@@ -63,6 +69,39 @@ namespace FrontEnd.Helpers
 
 
             return ExpedienteViewModel;
+        }
+        public ExpedienteViewModel Edit(ExpedienteViewModel expediente)
+        {
+
+
+            ExpedienteViewModel Expediente;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.PutResponse("api/expediente/", expediente);
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Expediente = JsonConvert.DeserializeObject<ExpedienteViewModel>(content);
+
+
+
+            return Expediente;
+        }
+
+
+
+        public ExpedienteViewModel Delete(int id)
+        {
+
+
+            ExpedienteViewModel Expediente;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.DeleteResponse("api/expediente/" + id.ToString());
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Expediente = JsonConvert.DeserializeObject<ExpedienteViewModel>(content);
+
+
+
+            return Expediente;
         }
     }
 }

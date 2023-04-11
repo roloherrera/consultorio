@@ -1,20 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FrontEnd.Helpers;
+using FrontEnd.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontEnd.Controllers
 {
     public class UsuarioController : Controller
     {
+        UsuarioHelper usuarioHelper;
         // GET: UsuarioController
         public ActionResult Index()
         {
-            return View();
+            string token = HttpContext.Session.GetString("token");
+
+            usuarioHelper = new UsuarioHelper();
+            List<UsuarioViewModel> lista = usuarioHelper.GetAll();
+            return View(lista);
         }
 
         // GET: UsuarioController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            usuarioHelper = new UsuarioHelper();
+            UsuarioViewModel usuario = usuarioHelper.Get(id);
+            return View(usuario);
         }
 
         // GET: UsuarioController/Create
@@ -26,11 +35,14 @@ namespace FrontEnd.Controllers
         // POST: UsuarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(UsuarioViewModel usuario)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                usuarioHelper = new UsuarioHelper();
+                usuario = usuarioHelper.Create(usuario);
+
+                return RedirectToAction("Details", new { id = usuario.IdUsuario });
             }
             catch
             {
@@ -41,16 +53,23 @@ namespace FrontEnd.Controllers
         // GET: UsuarioController/Edit/5
         public ActionResult Edit(int id)
         {
+            usuarioHelper = new UsuarioHelper();
+            UsuarioViewModel usuario = usuarioHelper.Get(id);
+
             return View();
         }
 
         // POST: UsuarioController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(UsuarioViewModel usuario)
         {
             try
             {
+                UsuarioHelper usuarioHelper = new UsuarioHelper();
+                usuario = usuarioHelper.Edit(usuario);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -62,16 +81,23 @@ namespace FrontEnd.Controllers
         // GET: UsuarioController/Delete/5
         public ActionResult Delete(int id)
         {
+            usuarioHelper = new UsuarioHelper();
+            UsuarioViewModel usuario = usuarioHelper.Get(id);
             return View();
         }
+
 
         // POST: UsuarioController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(UsuarioViewModel usuario)
         {
             try
             {
+                usuarioHelper = new UsuarioHelper();
+                usuarioHelper.Delete(usuario.IdUsuario);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch

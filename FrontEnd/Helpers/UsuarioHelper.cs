@@ -13,7 +13,11 @@ namespace FrontEnd.Helpers
             ServiceRepository = new ServiceRepository();
 
         }
+        public UsuarioHelper(string token)
+        {
+            ServiceRepository = new ServiceRepository(token);
 
+        }
 
 
         public List<UsuarioViewModel> GetAll()
@@ -63,6 +67,39 @@ namespace FrontEnd.Helpers
 
 
             return UsuarioViewModel;
+        }
+        public UsuarioViewModel Edit(UsuarioViewModel usuario)
+        {
+
+
+            UsuarioViewModel Usuario;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.PutResponse("api/usuario/", usuario);
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Usuario = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
+
+
+
+            return Usuario;
+        }
+
+
+
+        public UsuarioViewModel Delete(int id)
+        {
+
+
+            UsuarioViewModel Usuario;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.DeleteResponse("api/usuario/" + id.ToString());
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Usuario = JsonConvert.DeserializeObject<UsuarioViewModel>(content);
+
+
+
+            return Usuario;
         }
     }
 }

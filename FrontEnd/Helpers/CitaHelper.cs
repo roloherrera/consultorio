@@ -13,6 +13,11 @@ namespace FrontEnd.Helpers
             ServiceRepository = new ServiceRepository();
 
         }
+        public CitaHelper(string token)
+        {
+            ServiceRepository = new ServiceRepository(token);
+
+        }
 
 
 
@@ -63,6 +68,39 @@ namespace FrontEnd.Helpers
 
 
             return CitaViewModel;
+        }
+        public CitaViewModel Edit(CitaViewModel cita)
+        {
+
+
+            CitaViewModel Cita;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.PutResponse("api/cita/", cita);
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Cita = JsonConvert.DeserializeObject<CitaViewModel>(content);
+
+
+
+            return Cita;
+        }
+
+
+
+        public CitaViewModel Delete(int id)
+        {
+
+
+            CitaViewModel Cita;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.DeleteResponse("api/cita/" + id.ToString());
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Cita = JsonConvert.DeserializeObject<CitaViewModel>(content);
+
+
+
+            return Cita;
         }
     }
 }

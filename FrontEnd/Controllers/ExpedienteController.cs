@@ -1,20 +1,35 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FrontEnd.Helpers;
+using FrontEnd.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using NuGet.Common;
 
 namespace FrontEnd.Controllers
 {
     public class ExpedienteController : Controller
     {
+        private ExpedienteHelper expedienteHelper;
+        private UsuarioHelper usuarioHelper;
+        
+
         // GET: ExpedienteController
         public ActionResult Index()
         {
-            return View();
+
+            string token = HttpContext.Session.GetString("token");
+            expedienteHelper = new ExpedienteHelper(token);
+            List<ExpedienteViewModel> lista = expedienteHelper.GetAll();
+            return View(lista);
         }
 
         // GET: ExpedienteController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            string token = HttpContext.Session.GetString("token");
+            expedienteHelper = new ExpedienteHelper(token);
+            ExpedienteViewModel expediente = expedienteHelper.Get(id);
+            return View(expediente);
         }
 
         // GET: ExpedienteController/Create
@@ -26,11 +41,15 @@ namespace FrontEnd.Controllers
         // POST: ExpedienteController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ExpedienteViewModel expediente)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                string token = HttpContext.Session.GetString("token");
+                expedienteHelper = new ExpedienteHelper(token);
+                expediente = expedienteHelper.Create(expediente);
+
+                return RedirectToAction("Details", new { id = expediente.IdExpediente });
             }
             catch
             {
@@ -41,16 +60,25 @@ namespace FrontEnd.Controllers
         // GET: ExpedienteController/Edit/5
         public ActionResult Edit(int id)
         {
+            string token = HttpContext.Session.GetString("token");
+            expedienteHelper = new ExpedienteHelper(token);
+            ExpedienteViewModel expediente = expedienteHelper.Get(id);
+
             return View();
         }
 
         // POST: ExpedienteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ExpedienteViewModel expediente)
         {
             try
             {
+                string token = HttpContext.Session.GetString("token");
+                ExpedienteHelper expedienteHelper = new ExpedienteHelper(token);
+                expediente = expedienteHelper.Edit(expediente);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -62,16 +90,25 @@ namespace FrontEnd.Controllers
         // GET: ExpedienteController/Delete/5
         public ActionResult Delete(int id)
         {
+            string token = HttpContext.Session.GetString("token");
+            expedienteHelper = new ExpedienteHelper(token);
+            ExpedienteViewModel expediente = expedienteHelper.Get(id);
             return View();
         }
+
 
         // POST: ExpedienteController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(ExpedienteViewModel expediente)
         {
             try
             {
+                string token = HttpContext.Session.GetString("token");
+                expedienteHelper = new ExpedienteHelper(token);
+                expedienteHelper.Delete(expediente.IdExpediente);
+
+
                 return RedirectToAction(nameof(Index));
             }
             catch

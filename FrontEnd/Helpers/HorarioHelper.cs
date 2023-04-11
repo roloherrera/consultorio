@@ -14,6 +14,11 @@ namespace FrontEnd.Helpers
 
         }
 
+        public HorarioHelper(string token)
+        {
+            ServiceRepository = new ServiceRepository(token);
+
+        }
 
 
         public List<HorarioViewModel> GetAll()
@@ -63,6 +68,39 @@ namespace FrontEnd.Helpers
 
 
             return HorarioViewModel;
+        }
+        public HorarioViewModel Edit(HorarioViewModel horario)
+        {
+
+
+            HorarioViewModel Horario;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.PutResponse("api/horario/", horario);
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Horario = JsonConvert.DeserializeObject<HorarioViewModel>(content);
+
+
+
+            return Horario;
+        }
+
+
+
+        public HorarioViewModel Delete(int id)
+        {
+
+
+            HorarioViewModel Horario;
+
+
+            HttpResponseMessage responseMessage = ServiceRepository.DeleteResponse("api/horario/" + id.ToString());
+            var content = responseMessage.Content.ReadAsStringAsync().Result;
+            Horario = JsonConvert.DeserializeObject<HorarioViewModel>(content);
+
+
+
+            return Horario;
         }
     }
 }
