@@ -4,27 +4,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+<div class="col-4 mx-auto text-center">
+    <h2>Creación</h2>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
-<table class="table">
+<body class="m-0 row justify-content-center">
+    <div class="navbar-header">
+        <div class="col-4 mx-auto">
+            <table class="table table-primary">
     <thead>
         <tr>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.IdExpediente)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.IdUsuarioFk)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.IdDoctorFk)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Padecimiento)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Tratamiento)
             </th>
             <th></th>
@@ -52,8 +58,12 @@
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
