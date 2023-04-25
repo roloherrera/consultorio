@@ -4,12 +4,14 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="col-4 mx-auto text-center">
+    <h2>Detalles</h2>
+</div>
 
-<div>
-    <h4>CitaViewModel</h4>
+<div class="m-0 row justify-content-center">
     <hr />
-    <dl class="row">
+    <div class="col-4 mx-auto">
+        <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IdCitas)
         </dt>
@@ -54,7 +56,9 @@
         </dd>
     </dl>
 </div>
-<div>
+</div>
+<br />
+<div class="col-4 mx-auto">
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>
