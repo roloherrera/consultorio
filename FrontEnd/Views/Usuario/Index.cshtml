@@ -4,48 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+<div class="col-4 mx-auto text-center">
+    <h2>Creación</h2>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
-<table class="table">
+<body class="m-0 row justify-content-center">
+    <div class="navbar-header">
+        <div class="col-4 mx-auto">
+            <table class="table table-primary">
     <thead>
         <tr>
-            <th>
+                        <th scope ="col">
                 @Html.DisplayNameFor(model => model.IdUsuario)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.PrimerApellido)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.SegundoApellido)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Cedula)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Telefono)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Genero)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.FechaNacimiento)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Contrasenna)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.IdTipoUsuarioFk)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.State)
             </th>
             <th></th>
@@ -95,7 +101,11 @@
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
-        </tr>
-}
-    </tbody>
-</table>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
