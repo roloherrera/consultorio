@@ -4,41 +4,45 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="col-4 mx-auto text-center">
+    <h2>Creación</h2>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
-<table class="table">
+<body class="m-0 row justify-content-center">
+    <div class="navbar-header">
+        <div class="col-4 mx-auto">
+            <table class="table table-primary">
     <thead>
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.IdCitas)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.IdUsuarioFk)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.IdDoctorFk)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Condicion)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Dia)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Hora)
             </th>
-            <th>
+                        <th scope="col">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+                        <tr class="table-light">
             <td>
                 @Html.DisplayFor(modelItem => item.IdCitas)
             </td>
@@ -68,4 +72,7 @@
         </tr>
 }
     </tbody>
-</table>
+            </table>
+        </div>
+    </div>
+</body>
