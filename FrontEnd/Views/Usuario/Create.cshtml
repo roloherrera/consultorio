@@ -12,11 +12,11 @@
         <div class="col-4 mx-auto">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+                <!--<div class="form-group">
                     <label asp-for="IdUsuario" class="form-label mt-8"></label>
                 <input asp-for="IdUsuario" class="form-control" />
                 <span asp-validation-for="IdUsuario" class="text-danger"></span>
-            </div>
+                </div>-->
             <div class="form-group">
                     <label asp-for="Nombre" class="form-label mt-8"></label>
                 <input asp-for="Nombre" class="form-control" />
@@ -62,19 +62,21 @@
                 <input asp-for="Contrasenna" class="form-control" />
                 <span asp-validation-for="Contrasenna" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <br />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-lg btn-light btn-outline-dark" />
+                </div>
+                <div style="visibility: hidden"  class="form-group">
                     <label asp-for="IdTipoUsuarioFk" class="form-label mt-8"></label>
-                <input asp-for="IdTipoUsuarioFk" class="form-control" />
+                <input asp-for="IdTipoUsuarioFk" class="form-control" value="1" />
                 <span asp-validation-for="IdTipoUsuarioFk" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+                <div class="form-group form-check " style="visibility: hidden">
                 <label class="form-check-label mt-8">
-                    <input class="form-check-input" asp-for="State" /> @Html.DisplayNameFor(model => model.State)
+                    <input class="form-check-input" asp-for="State" checked/> @Html.DisplayNameFor(model => model.State)
                 </label>
             </div>
-            <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-lg btn-light btn-outline-dark" />
-            </div>
+           
         </form>
         </div>
     </div>
